@@ -49,10 +49,9 @@ public class Window extends JFrame {
 	
 	private void go()
 	{
-		int index = 0;
 		while(true)
 		{
-			System.out.println(index++);
+			ctrl.oneStep();
 			
 			try{
 				Thread.sleep(5);
