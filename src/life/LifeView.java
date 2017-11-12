@@ -28,7 +28,7 @@ public class LifeView extends JPanel{
 		for(Agent a : services.getAllAgents())
 		{
 			if(a instanceof Human)			//Don't wanna add Color data in Agent class. Agents don't have to know they have a color. 
-				g.setColor(Color.GREEN);
+				g.setColor(Color.BLUE);
 			else //ZOMBIE
 				g.setColor(Color.RED);
 			

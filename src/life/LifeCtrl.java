@@ -25,14 +25,14 @@ public class LifeCtrl {
 		};
 
 		view = new LifeView(services);
-		model = new LifeModel();
-		
-		Human h = new Human(100,100);
-		Zombie z = new Zombie(340,340);
-		
+		model = new LifeModel();		
 
-		model.agents.add(h);
-		model.agents.add(z);
+		model.agents.add(new Human(100,100));
+		model.agents.add(new Zombie(140,340));
+		model.agents.add(new Human(200,200));
+		model.agents.add(new Zombie(340,240));
+		model.agents.add(new Human(300,100));
+		model.agents.add(new Zombie(240,240));
 	}
 	
 	public JPanel getView()
