@@ -5,6 +5,14 @@ public abstract class Agent {
 	private int x = 0;
 	private int y = 0;
 	
+	protected boolean alive = true;
+	
+	public boolean isAlive() {
+		return alive;
+	}
+
+	protected Perception perception = new Perception();
+	
 	public void setPos(int x, int y)
 	{
 		this.setX(x);
