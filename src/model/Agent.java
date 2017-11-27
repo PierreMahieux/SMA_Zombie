@@ -11,7 +11,7 @@ public abstract class Agent {
 		return alive;
 	}
 
-	protected Perception perception = new Perception();
+	protected Perception perception;
 	
 	public void setPos(int x, int y)
 	{
@@ -28,13 +28,15 @@ public abstract class Agent {
 	public abstract void live();
 	public abstract Agent getNextState();
 	
-	public Agent() {
-		this(0,0);
+	public Agent(Perception perception) {
+		this(0,0, perception);
 	}
 	
-	public Agent(int x, int y) {
+	public Agent(int x, int y, Perception perception) {
 		this.setX(x);
 		this.setY(y);
+		
+		this.perception = perception;
 	}
 
 	public int getX() {

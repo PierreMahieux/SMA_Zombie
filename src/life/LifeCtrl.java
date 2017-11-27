@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 
 import model.Agent;
 import model.Human;
+import model.Perception;
 import model.Zombie;
 
 public class LifeCtrl {
@@ -27,12 +28,12 @@ public class LifeCtrl {
 		view = new LifeView(services);
 		model = new LifeModel();		
 
-		model.agents.add(new Human(100,100));
-		model.agents.add(new Zombie(140,340));
-		model.agents.add(new Human(200,200));
-		model.agents.add(new Zombie(340,240));
-		model.agents.add(new Human(300,100));
-		model.agents.add(new Zombie(240,240));
+		model.agents.add(new Human(100,100, new Perception(services)));
+		model.agents.add(new Zombie(140,340, new Perception(services)));
+		model.agents.add(new Human(200,200, new Perception(services)));
+		model.agents.add(new Zombie(340,240, new Perception(services)));
+		model.agents.add(new Human(300,100, new Perception(services)));
+		model.agents.add(new Zombie(240,240, new Perception(services)));
 	}
 	
 	public JPanel getView()
