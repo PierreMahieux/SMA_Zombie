@@ -10,11 +10,11 @@ public class MyMaths {
 	}
 	
 	public static double[] normaliseVector(int x, int y){
-		System.out.println("before : " + x + "; " + y);
 		double[] normalisedVector = new double[2];
 		double magnitude = Math.sqrt(x*x + y*y);
 		normalisedVector[0] = x/magnitude;
 		normalisedVector[1] = y/magnitude;
+		
 		return normalisedVector;
 	}
 }

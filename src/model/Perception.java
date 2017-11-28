@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.Point;
+import java.util.ArrayList;
 
 import life.LifeCtrlServices;
 import utils.MyMaths;
@@ -67,5 +68,33 @@ public class Perception {
 		}	
 		
 		return nearestZombie;
+	}
+	
+	public ArrayList<Agent> getNearbyZombies(int x, int y, int areaRadius){
+		ArrayList<Agent> nearbyZombies = new ArrayList<>();
+		
+		for(Agent a : services.getAllAgents()) {
+			if(a instanceof Zombie) {
+				if(MyMaths.distance(new Point(x,y), new Point(a.getX(), a.getY())) < areaRadius) {
+					nearbyZombies.add((Zombie)a);
+				}
+			}
+		}
+		
+		return nearbyZombies;
+	}
+	
+	public Point getCentroidOfAgents(ArrayList<Agent> agents) {
+		Point centroid = new Point();
+		
+		for (Agent agent : agents) {
+			centroid.x += agent.getX();
+			centroid.y += agent.getY();
+		}
+		
+		centroid.x = centroid.x / agents.size();
+		centroid.y = centroid.y / agents.size();
+		
+		return centroid;
 	}
 }

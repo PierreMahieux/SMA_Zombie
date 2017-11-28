@@ -5,6 +5,7 @@ import utils.MyMaths;
 public class Zombie extends Agent{
 	
 	protected boolean miracleHealing = false;
+	protected int moveSpeed = 2;
 
 	public Zombie(int x, int y, Perception perception) 
 	{
@@ -21,7 +22,7 @@ public class Zombie extends Agent{
 	{
 		Human nearestHuman = this.perception.getNearestHumanFrom(this.getX(), this.getY());
 		double[] direction = MyMaths.normaliseVector(nearestHuman.getX() - this.getX(), nearestHuman.getY() - this.getY());
-		this.move((int)(direction[0]*4), (int)(direction[1]*4));
+		this.move((int)(direction[0]*moveSpeed), (int)(direction[1]*moveSpeed));
 	}
 	
 	@Override
