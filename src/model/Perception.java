@@ -4,9 +4,13 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 import life.LifeCtrlServices;
+import model.agents.Human;
+import model.agents.Zombie;
 import utils.MyMaths;
 
 public class Perception {
+	
+	public static final int MAX_PERCEPTION_DISTANCE = 300;
 
 	private LifeCtrlServices services;
 	
@@ -38,7 +42,7 @@ public class Perception {
 				}
 			}
 		}	
-		
+		if(distance > MAX_PERCEPTION_DISTANCE)return null;
 		return nearestHuman;
 	}
 	
@@ -66,7 +70,8 @@ public class Perception {
 				}
 			}
 		}	
-		
+
+		if(distance > MAX_PERCEPTION_DISTANCE)return null;
 		return nearestZombie;
 	}
 	

@@ -6,10 +6,13 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 import model.Agent;
-import model.Human;
+import model.Perception;
+import model.agents.Human;
 
 @SuppressWarnings("serial")
 public class LifeView extends JPanel{
+	
+	protected final boolean DEBUG = true; //True to draw more for better understanding
 	
 	protected final int RADIUS = 3;
 	
@@ -33,6 +36,7 @@ public class LifeView extends JPanel{
 				g.setColor(Color.RED);
 			
 			g.fillOval(a.getX() - RADIUS/2, a.getY() - RADIUS/2, RADIUS, RADIUS);
+			if(DEBUG)g.drawOval(a.getX() - Perception.MAX_PERCEPTION_DISTANCE/2, a.getY() - Perception.MAX_PERCEPTION_DISTANCE/2, Perception.MAX_PERCEPTION_DISTANCE, Perception.MAX_PERCEPTION_DISTANCE);
 		}
 	}
 

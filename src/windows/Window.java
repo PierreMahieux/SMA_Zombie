@@ -28,7 +28,7 @@ public class Window extends JFrame {
 		container.setLayout(new BorderLayout());
 		container.add(ctrl.getView(), BorderLayout.CENTER);
 		
-		setSize(1000,600);
+		setSize(1300,800);
 
 		this.setContentPane(container);
 		

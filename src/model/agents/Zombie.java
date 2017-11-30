@@ -1,11 +1,13 @@
-package model;
+package model.agents;
 
+import model.Agent;
+import model.Perception;
 import utils.MyMaths;
 
 public class Zombie extends Agent{
 	
 	protected boolean miracleHealing = false;
-	protected int moveSpeed = 2;
+	protected double moveSpeed = 2;
 
 	public Zombie(int x, int y, Perception perception) 
 	{
@@ -21,6 +23,15 @@ public class Zombie extends Agent{
 	public void live()
 	{
 		Human nearestHuman = this.perception.getNearestHumanFrom(this.getX(), this.getY());
+		
+		if(nearestHuman == null)
+		{
+			//No human in sight
+			this.move((int)((Math.random()-0.5) * 4),(int)((Math.random()-0.5) * 4));
+			return;
+		}
+		
+		
 		double[] direction = MyMaths.normaliseVector(nearestHuman.getX() - this.getX(), nearestHuman.getY() - this.getY());
 		this.move((int)(direction[0]*moveSpeed), (int)(direction[1]*moveSpeed));
 	}

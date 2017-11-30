@@ -1,13 +1,15 @@
-package model;
+package model.agents;
 
 import java.awt.Point;
 import java.util.ArrayList;
 
+import model.Agent;
+import model.Perception;
 import utils.MyMaths;
 
 public class Human extends Agent{
 	
-	protected int moveSpeed = 3;
+	protected double moveSpeed = 3;
 	
 	public Human(int x, int y, Perception perception) {
 		super(x,y, perception);
@@ -25,15 +27,16 @@ public class Human extends Agent{
 		int areaRadius = 100;
 		ArrayList<Agent> nearbyZombies = this.perception.getNearbyZombies(this.getX(), this.getY(), areaRadius);
 		
-		Point centroid;
 		if (nearbyZombies.isEmpty()) {
-			centroid = new Point(this.getX() + (int)((Math.random() - 0.5) * 2), this.getY() + (int)((Math.random() - 0.5) * 2));
+			this.move((int)((Math.random()-0.5) * 4),(int)((Math.random()-0.5) * 4));
+			return;
 		}
-		else {
-			centroid = new Point(perception.getCentroidOfAgents(nearbyZombies));
-		}
+			
+		
+		Point zombiesCentroid = new Point(perception.getCentroidOfAgents(nearbyZombies)); //Center of gravity of all zombies
+		
 	
-		double[] direction = MyMaths.normaliseVector(this.getX() - (int)centroid.getX(), this.getY() - (int)centroid.getY());
+		double[] direction = MyMaths.normaliseVector(this.getX() - (int)zombiesCentroid.getX(), this.getY() - (int)zombiesCentroid.getY());
 		this.move((int)(direction[0]*moveSpeed), (int)(direction[1]*moveSpeed));
 		
 	}
