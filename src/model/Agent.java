@@ -1,5 +1,7 @@
 package model;
 
+import java.awt.Point;
+
 public abstract class Agent {
 
 	private int x = 0;
@@ -17,6 +19,11 @@ public abstract class Agent {
 	{
 		this.setX(x);
 		this.setY(y);
+	}
+	
+	public Point getPos()
+	{
+		return new Point(getX(), getY());
 	}
 	
 	public void move(int dx, int dy)

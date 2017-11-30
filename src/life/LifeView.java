@@ -8,13 +8,14 @@ import javax.swing.JPanel;
 import model.Agent;
 import model.Perception;
 import model.agents.Human;
+import model.agents.Zombie;
 
 @SuppressWarnings("serial")
 public class LifeView extends JPanel{
 	
 	protected final boolean DEBUG = true; //True to draw more for better understanding
 	
-	protected final int RADIUS = 3;
+	protected final int DIAMETER = 2;
 	
 	protected LifeCtrlServices services;
 	
@@ -35,8 +36,11 @@ public class LifeView extends JPanel{
 			else //ZOMBIE
 				g.setColor(Color.RED);
 			
-			g.fillOval(a.getX() - RADIUS/2, a.getY() - RADIUS/2, RADIUS, RADIUS);
-			if(DEBUG)g.drawOval(a.getX() - Perception.MAX_PERCEPTION_DISTANCE/2, a.getY() - Perception.MAX_PERCEPTION_DISTANCE/2, Perception.MAX_PERCEPTION_DISTANCE, Perception.MAX_PERCEPTION_DISTANCE);
+			g.fillOval(a.getX() - DIAMETER/2, a.getY() - DIAMETER/2, DIAMETER, DIAMETER);
+			
+			if(DEBUG && g.getColor() == Color.RED)g.drawOval(a.getX() - Zombie.killDistance, a.getY() - Zombie.killDistance, Zombie.killDistance*2, Zombie.killDistance*2);
+			
+			if(DEBUG)g.drawOval(a.getX() - Perception.MAX_PERCEPTION_DISTANCE, a.getY() - Perception.MAX_PERCEPTION_DISTANCE, Perception.MAX_PERCEPTION_DISTANCE*2, Perception.MAX_PERCEPTION_DISTANCE*2);
 		}
 	}
 

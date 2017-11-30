@@ -10,7 +10,7 @@ import utils.MyMaths;
 
 public class Perception {
 	
-	public static final int MAX_PERCEPTION_DISTANCE = 300;
+	public static final int MAX_PERCEPTION_DISTANCE = 150;
 
 	private LifeCtrlServices services;
 	

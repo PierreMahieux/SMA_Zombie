@@ -41,9 +41,15 @@ public class Human extends Agent{
 		
 	}
 	
+	public void kill()
+	{
+		alive = false;
+	}
+	
 	@Override
 	public Agent getNextState()
 	{
+		//System.out.println("Human Killed");
 		return new Zombie(this.getX(), this.getY(), this.perception);
 	}
 

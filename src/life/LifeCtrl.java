@@ -33,6 +33,20 @@ public class LifeCtrl {
 		model.agents.add(new Zombie(280,250, new Perception(services)));
 		model.agents.add(new Zombie(250,300, new Perception(services)));
 		model.agents.add(new Zombie(280,350, new Perception(services)));
+
+		double MAX_X = 1000;
+		double MAX_Y = 600;
+		
+		for(int i = 0; i < 200; i++)
+		{
+			int x = 100 + (int)(Math.random() * MAX_X);
+			int y = 100 + (int)(Math.random() * MAX_Y);
+			
+			if(Math.random() > 0.5)
+				model.agents.add(new Zombie(x, y, new Perception(services)));
+			else
+				model.agents.add(new Human(x,y, new Perception(services)));
+		}
 	}
 	
 	public JPanel getView()
