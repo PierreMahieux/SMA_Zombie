@@ -1,5 +1,9 @@
 package life;
 
+import java.awt.Point;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -24,10 +28,41 @@ public class LifeCtrl {
 			public ArrayList<Agent> getAllAgents() {
 				return model.agents;
 			}
+
+			@Override
+			public Point getScreenPos() {
+				return new Point(model.xScreen, model.yScreen);
+			}
 		};
 
 		view = new LifeView(services);
-		model = new LifeModel();		
+		model = new LifeModel();
+		
+		view.addMouseListener(new MouseListener() {			
+			@Override
+			public void mouseReleased(MouseEvent e) {}			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				model.pressedX = e.getX(); model.pressedY = e.getY();				
+			}			
+			@Override
+			public void mouseExited(MouseEvent e) {}			
+			@Override
+			public void mouseEntered(MouseEvent e) {}			
+			@Override
+			public void mouseClicked(MouseEvent e) {}
+		});
+		
+		view.addMouseMotionListener(new MouseMotionListener() {			
+			@Override
+			public void mouseMoved(MouseEvent e) {}
+			
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				mooveScreen(model.pressedX-e.getX(), model.pressedY-e.getY());
+				model.pressedX = e.getX(); model.pressedY = e.getY();				
+			}
+		});
 
 		model.agents.add(new Human(300,300, new Perception(services)));
 		model.agents.add(new Zombie(280,250, new Perception(services)));
@@ -78,4 +113,11 @@ public class LifeCtrl {
 		
 		view.repaint();
 	}
+	
+	private void mooveScreen(int dx, int dy)
+	{
+		model.xScreen += dx;
+		model.yScreen += dy;
+	}
+	
 }

@@ -35,12 +35,15 @@ public class LifeView extends JPanel{
 				g.setColor(Color.BLUE);
 			else //ZOMBIE
 				g.setColor(Color.RED);
+
+			int xPos = - services.getScreenPos().x + a.getX();
+			int yPos = - services.getScreenPos().y + a.getY();
 			
-			g.fillOval(a.getX() - DIAMETER/2, a.getY() - DIAMETER/2, DIAMETER, DIAMETER);
+			g.fillOval(xPos - DIAMETER/2, yPos - DIAMETER/2, DIAMETER, DIAMETER);
 			
-			if(DEBUG && g.getColor() == Color.RED)g.drawOval(a.getX() - Zombie.killDistance, a.getY() - Zombie.killDistance, Zombie.killDistance*2, Zombie.killDistance*2);
+			if(DEBUG && g.getColor() == Color.RED)g.drawOval(xPos - Zombie.killDistance, yPos - Zombie.killDistance, Zombie.killDistance*2, Zombie.killDistance*2);
 			
-			if(DEBUG)g.drawOval(a.getX() - Perception.MAX_PERCEPTION_DISTANCE, a.getY() - Perception.MAX_PERCEPTION_DISTANCE, Perception.MAX_PERCEPTION_DISTANCE*2, Perception.MAX_PERCEPTION_DISTANCE*2);
+			if(DEBUG)g.drawOval(xPos - Perception.MAX_PERCEPTION_DISTANCE, yPos - Perception.MAX_PERCEPTION_DISTANCE, Perception.MAX_PERCEPTION_DISTANCE*2, Perception.MAX_PERCEPTION_DISTANCE*2);
 		}
 	}
 
