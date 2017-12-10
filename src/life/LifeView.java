@@ -29,6 +29,23 @@ public class LifeView extends JPanel{
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
+		/** Drawing Map **/
+		for(int yi = 0; yi < services.getTerrain().length; yi++)
+		{
+			for(int xi = 0; xi < services.getTerrain()[yi].length; xi++)
+			{
+				if(services.getTerrain()[yi][xi] != 0)
+				{
+					g.setColor(Color.GREEN);
+					g.fillRect(xi - services.getScreenPos().x, yi - services.getScreenPos().y, 1, 1);
+				}
+				
+				
+			}
+		}
+		
+		/** Drawing Agents **/
+		
 		for(Agent a : services.getAllAgents())
 		{
 			if(a instanceof Human)			//Don't wanna add Color data in Agent class. Agents don't have to know they have a color. 

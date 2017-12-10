@@ -9,4 +9,6 @@ public interface LifeCtrlServices {
 	public ArrayList<Agent> getAllAgents();
 	
 	public Point getScreenPos();
+	
+	public int[][] getTerrain();
 }

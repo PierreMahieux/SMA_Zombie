@@ -10,6 +10,7 @@ import java.util.Collections;
 import javax.swing.JPanel;
 
 import model.Agent;
+import model.FieldMap;
 import model.Perception;
 import model.agents.Human;
 import model.agents.Zombie;
@@ -33,10 +34,21 @@ public class LifeCtrl {
 			public Point getScreenPos() {
 				return new Point(model.xScreen, model.yScreen);
 			}
+
+			@Override
+			public int[][] getTerrain() {
+				return model.map.getTerrain();
+			}
 		};
+
+		double MAX_X = 1000;
+		double MAX_Y = 600;
 
 		view = new LifeView(services);
 		model = new LifeModel();
+		
+		model.map = new FieldMap((int)MAX_X*2,(int) MAX_Y*2);
+		model.map.initCircleMap();
 		
 		view.addMouseListener(new MouseListener() {			
 			@Override
@@ -68,9 +80,6 @@ public class LifeCtrl {
 		model.agents.add(new Zombie(280,250, new Perception(services)));
 		model.agents.add(new Zombie(250,300, new Perception(services)));
 		model.agents.add(new Zombie(280,350, new Perception(services)));
-
-		double MAX_X = 1000;
-		double MAX_Y = 600;
 		
 		for(int i = 0; i < 200; i++)
 		{
