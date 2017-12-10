@@ -1,11 +1,12 @@
 package windows;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.JLayeredPane;
 
 import life.LifeCtrl;
 
@@ -23,14 +24,23 @@ public class Window extends JFrame {
 		setLocationRelativeTo(null);		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JPanel container = new JPanel();
+		setLayout(new BorderLayout());
 		
-		container.setLayout(new BorderLayout());
-		container.add(ctrl.getView(), BorderLayout.CENTER);
+		JLayeredPane container = new JLayeredPane();
+		
+		container.setBackground(Color.CYAN);
+		
+		container.setBounds(0,0,5000,5000);
+
+		ctrl.getView().setBounds(0,0,5000,5000);
+		ctrl.getMapView().setBounds(0,0,5000,5000);
+
+		container.add(ctrl.getView(), new Integer(1));	
+		container.add(ctrl.getMapView(), new Integer(0));
 		
 		setSize(1300,800);
 
-		this.setContentPane(container);
+		add(container);
 		
 		addWindowListener(new WindowAdapter()
 		{

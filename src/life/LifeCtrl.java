@@ -19,6 +19,7 @@ public class LifeCtrl {
 	
 	protected LifeCtrlServices services;
 
+	protected FieldMapView mapview;
 	protected LifeView view;
 	protected LifeModel model;
 	
@@ -44,6 +45,7 @@ public class LifeCtrl {
 		double MAX_X = 1000;
 		double MAX_Y = 600;
 
+		mapview = new FieldMapView(services);
 		view = new LifeView(services);
 		model = new LifeModel();
 		
@@ -97,6 +99,11 @@ public class LifeCtrl {
 	{
 		return this.view;
 	}
+	
+	public JPanel getMapView()
+	{
+		return this.mapview;
+	}
 
 	public void oneStep()
 	{
@@ -105,12 +112,19 @@ public class LifeCtrl {
 		ArrayList<Agent> deads = new ArrayList<>();
 		
 		for(Agent a : model.agents)
-		{
-			a.live();
-			
+		{			
 			if(!a.isAlive()) //if Dead
 			{
 				deads.add(a);
+			}
+			else
+			{
+				a.live();
+			
+				if(!a.isAlive()) //if Dead
+				{
+					deads.add(a);
+				}
 			}
 		}
 		

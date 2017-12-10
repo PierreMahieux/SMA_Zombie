@@ -13,9 +13,9 @@ import model.agents.Zombie;
 @SuppressWarnings("serial")
 public class LifeView extends JPanel{
 	
-	protected final boolean DEBUG = true; //True to draw more for better understanding
+	protected final boolean DEBUG = false; //True to draw more for better understanding
 	
-	protected final int DIAMETER = 2;
+	protected final int DIAMETER = 3;
 	
 	protected LifeCtrlServices services;
 	
@@ -23,26 +23,15 @@ public class LifeView extends JPanel{
 	{
 		super();
 		this.services = services;
+		
+		setOpaque(false);
 	}
 	
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
-		/** Drawing Map **/
-		for(int yi = 0; yi < services.getTerrain().length; yi++)
-		{
-			for(int xi = 0; xi < services.getTerrain()[yi].length; xi++)
-			{
-				if(services.getTerrain()[yi][xi] != 0)
-				{
-					g.setColor(Color.GREEN);
-					g.fillRect(xi - services.getScreenPos().x, yi - services.getScreenPos().y, 1, 1);
-				}
-				
-				
-			}
-		}
+		System.out.println("Agents Repaint");
 		
 		/** Drawing Agents **/
 		
