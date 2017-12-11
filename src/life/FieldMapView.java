@@ -56,13 +56,9 @@ public class FieldMapView extends JPanel{
 
 	@Override
 	protected void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		
+		super.paintComponent(g);		
 		
 		if(actualMap == null)return;
-		
-		
-		System.out.println("Map Repaint");
 		
 		// Drawing Map //
 		g.drawImage(actualMap, - services.getScreenPos().x, - services.getScreenPos().y, null);

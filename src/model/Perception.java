@@ -12,10 +12,13 @@ public class Perception {
 	
 	public static final int MAX_PERCEPTION_DISTANCE = 150;
 
-	private LifeCtrlServices services;
+	protected LifeCtrlServices services;
+
+	protected FieldMap map;
 	
-	public Perception(LifeCtrlServices services) {
+	public Perception(LifeCtrlServices services, FieldMap map) {
 		this.services = services;
+		this.map = map;
 	}
 	
 	public Human getNearestHumanFrom(int x, int y)
@@ -101,5 +104,10 @@ public class Perception {
 		centroid.y = centroid.y / agents.size();
 		
 		return centroid;
+	}
+	
+	public boolean isInMap(Point agent)
+	{
+		return this.map.isInMap(agent);
 	}
 }

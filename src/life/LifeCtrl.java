@@ -42,13 +42,13 @@ public class LifeCtrl {
 			}
 		};
 
-		double MAX_X = 1000;
-		double MAX_Y = 600;
+		int MAX_X = 1000;
+		int MAX_Y = 600;
 		
 		view = new LifeView(services);
 		model = new LifeModel();
 		
-		model.map = new FieldMap((int)MAX_X*2,(int) MAX_Y*2);
+		model.map = new FieldMap(MAX_X*2, MAX_Y*2);
 		model.map.initCircleMap();
 
 		mapview = new FieldMapView(services);
@@ -78,21 +78,15 @@ public class LifeCtrl {
 				model.pressedX = e.getX(); model.pressedY = e.getY();				
 			}
 		});
-
-		model.agents.add(new Human(300,300, new Perception(services)));
-		model.agents.add(new Zombie(280,250, new Perception(services)));
-		model.agents.add(new Zombie(250,300, new Perception(services)));
-		model.agents.add(new Zombie(280,350, new Perception(services)));
 		
-		for(int i = 0; i < 200; i++)
+		for(int i = 0; i < 300; i++)
 		{
-			int x = 100 + (int)(Math.random() * MAX_X);
-			int y = 100 + (int)(Math.random() * MAX_Y);
+			Point spawn = model.map.getRandomPointInMap();
 			
-			if(Math.random() > 0.5)
-				model.agents.add(new Zombie(x, y, new Perception(services)));
+			if(Math.random() > 0.95)
+				model.agents.add(new Zombie(spawn.x, spawn.y, new Perception(services, model.map)));
 			else
-				model.agents.add(new Human(x,y, new Perception(services)));
+				model.agents.add(new Human(spawn.x, spawn.y, new Perception(services, model.map)));
 		}
 	}
 	
@@ -113,8 +107,12 @@ public class LifeCtrl {
 		ArrayList<Agent> deads = new ArrayList<>();
 		
 		for(Agent a : model.agents)
-		{			
-			if(!a.isAlive()) //if Dead
+		{
+			if(!model.map.isInMap(a.getPos()))
+				System.out.println("died");
+			
+			if(!a.isAlive() //if Dead
+					|| !model.map.isInMap(a.getPos())) //Or outside the map
 			{
 				deads.add(a);
 			}

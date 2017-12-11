@@ -27,17 +27,30 @@ public class Human extends Agent{
 		int areaRadius = 100;
 		ArrayList<Agent> nearbyZombies = this.perception.getNearbyZombies(this.getX(), this.getY(), areaRadius);
 		
+		int[] deltaMove = new int[2];
+		
 		if (nearbyZombies.isEmpty()) {
-			this.move((int)((Math.random()-0.5) * 4),(int)((Math.random()-0.5) * 4));
-			return;
+			//this.move((int)((Math.random()-0.5) * 4),(int)((Math.random()-0.5) * 4));
+			deltaMove[0] = (int)((Math.random()-0.5) * 4);
+			deltaMove[1] = (int)((Math.random()-0.5) * 4);			
 		}
+		else
+		{
+			Point zombiesCentroid = new Point(perception.getCentroidOfAgents(nearbyZombies)); //Center of gravity of all zombies
 			
+			
+			double[] direction = MyMaths.normaliseVector(this.getX() - (int)zombiesCentroid.getX(), this.getY() - (int)zombiesCentroid.getY());
+			
+			//if(perception.isInMap(new Point(this.getX() + (int)(direction[0]*moveSpeed), this.getY() + (int)(direction[1]*moveSpeed))))
+			//this.move((int)(direction[0]*moveSpeed), (int)(direction[1]*moveSpeed));
+			deltaMove[0] = (int)(direction[0]*moveSpeed);
+			deltaMove[1] = (int)(direction[1]*moveSpeed);	
+		}
 		
-		Point zombiesCentroid = new Point(perception.getCentroidOfAgents(nearbyZombies)); //Center of gravity of all zombies
-		
-	
-		double[] direction = MyMaths.normaliseVector(this.getX() - (int)zombiesCentroid.getX(), this.getY() - (int)zombiesCentroid.getY());
-		this.move((int)(direction[0]*moveSpeed), (int)(direction[1]*moveSpeed));
+		if(perception.isInMap(new Point(this.getX() + deltaMove[0], this.getY() + deltaMove[1])))
+		{
+			this.move(deltaMove[0], deltaMove[1]);
+		}
 		
 	}
 	

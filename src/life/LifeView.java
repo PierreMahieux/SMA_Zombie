@@ -13,7 +13,7 @@ import model.agents.Zombie;
 @SuppressWarnings("serial")
 public class LifeView extends JPanel{
 	
-	protected final boolean DEBUG = true; //True to draw more for better understanding
+	protected final boolean DEBUG = false; //True to draw more for better understanding
 	
 	protected final int DIAMETER = 3;
 	
@@ -30,8 +30,6 @@ public class LifeView extends JPanel{
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		
-		System.out.println("Agents Repaint");
 		
 		/** Drawing Agents **/
 		
