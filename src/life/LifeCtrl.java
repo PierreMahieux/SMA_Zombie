@@ -44,13 +44,14 @@ public class LifeCtrl {
 
 		double MAX_X = 1000;
 		double MAX_Y = 600;
-
-		mapview = new FieldMapView(services);
+		
 		view = new LifeView(services);
 		model = new LifeModel();
 		
 		model.map = new FieldMap((int)MAX_X*2,(int) MAX_Y*2);
 		model.map.initCircleMap();
+
+		mapview = new FieldMapView(services);
 		
 		view.addMouseListener(new MouseListener() {			
 			@Override

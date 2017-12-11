@@ -1,7 +1,6 @@
 package windows;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -27,8 +26,6 @@ public class Window extends JFrame {
 		setLayout(new BorderLayout());
 		
 		JLayeredPane container = new JLayeredPane();
-		
-		container.setBackground(Color.CYAN);
 		
 		container.setBounds(0,0,5000,5000);
 
