@@ -32,6 +32,22 @@ public abstract class Agent {
 		this.setY(y + dy);
 	}
 	
+	/**
+	 * 
+	 * @param computedDirection : Normalized vector
+	 * @param moveSpeed : Quantity of movement allowed
+	 * @return A new vector scaled.
+	 */
+	protected static int[] getUtilisableDirection(double[] computedDirection, double moveSpeed)
+	{
+		int[] newDirection = new int[2];
+		
+		newDirection[0] = (int)(computedDirection[0] * moveSpeed);
+		newDirection[1] = (int)(moveSpeed - Math.abs(newDirection[0]));	
+		
+		return newDirection;
+	}
+	
 	public abstract void live();
 	public abstract Agent getNextState();
 	

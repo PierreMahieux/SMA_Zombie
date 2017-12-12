@@ -59,8 +59,10 @@ public class Zombie extends Agent{
 				//if(perception.isInMap(new Point(this.getX() + (int)(direction[0]*moveSpeed), this.getY() + (int)(direction[1]*moveSpeed))))
 				//	this.move((int)(direction[0]*moveSpeed), (int)(direction[1]*moveSpeed));
 				
-				deltaMove[0] = (int)(direction[0]*moveSpeed);
-				deltaMove[1] = (int)(direction[1]*moveSpeed);
+				//deltaMove[0] = (int)(direction[0]*moveSpeed);
+				//deltaMove[1] = (int)(direction[1]*moveSpeed);
+				
+				deltaMove = getUtilisableDirection(direction, moveSpeed);
 			}
 		}
 		
