@@ -9,7 +9,7 @@ import utils.MyMaths;
 
 public class Human extends Agent{
 	
-	protected double moveSpeed = 3;
+	protected int moveSpeed = 3;
 	
 	public Human(int x, int y, Perception perception) {
 		super(x,y, perception);
@@ -47,12 +47,22 @@ public class Human extends Agent{
 			//deltaMove[1] = (int)(direction[1]*moveSpeed);
 			
 
-			deltaMove = getUtilisableDirection(direction, moveSpeed);
+			deltaMove = getUsableDirection(direction);
 		}
 		
 		if(perception.isInMap(new Point(this.getX() + deltaMove[0], this.getY() + deltaMove[1])))
 		{
 			this.move(deltaMove[0], deltaMove[1]);
+		}
+		else
+		{
+			for(int[] move : getDirectionsNear(deltaMove))
+			{
+				if(perception.isInMap(new Point(this.getX() + move[0], this.getY() + move[1])))
+				{
+					this.move(move[0], move[1]);
+				}
+			}
 		}
 		
 	}
@@ -67,6 +77,11 @@ public class Human extends Agent{
 	{
 		//System.out.println("Human Killed");
 		return new Zombie(this.getX(), this.getY(), this.perception);
+	}
+
+	@Override
+	public int getMoveSpeed() {
+		return moveSpeed;
 	}
 
 }

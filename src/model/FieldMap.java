@@ -59,7 +59,7 @@ public class FieldMap {
 	public void initPerlinMap(double seed)
 	{
 		double[] smallLimit = {0.15*size[0], 0.15*size[1]};
-		double[] largeLimit = {0.15*size[0], 0.15*size[1]}; 
+		double[] largeLimit = {0.85*size[0], 0.85*size[1]}; 
 		
 		for(int yi = 0; yi < size[1];yi++)
 		{
@@ -100,7 +100,7 @@ public class FieldMap {
 	
 	public boolean isInMap(Point agent)
 	{
-		if(agent.x > size[0] || agent.y > size[1] || agent.x < 0 || agent.y < 0) return false;
+		if(agent.x >= size[0] || agent.y >= size[1] || agent.x < 0 || agent.y < 0) return false;
 		return map[agent.y][agent.x] == 1;
 	}
 }

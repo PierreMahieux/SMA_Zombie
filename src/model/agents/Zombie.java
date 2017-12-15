@@ -9,7 +9,7 @@ import utils.MyMaths;
 public class Zombie extends Agent{
 	
 	protected boolean miracleHealing = false;
-	protected double moveSpeed = 2;
+	protected int moveSpeed = 2;
 	
 	public static final int killDistance = 10;
 
@@ -62,12 +62,24 @@ public class Zombie extends Agent{
 				//deltaMove[0] = (int)(direction[0]*moveSpeed);
 				//deltaMove[1] = (int)(direction[1]*moveSpeed);
 				
-				deltaMove = getUtilisableDirection(direction, moveSpeed);
+				deltaMove = getUsableDirection(direction);
 			}
 		}
 		
 		if(perception.isInMap(new Point(this.getX() + deltaMove[0], this.getY() + deltaMove[1])))
+		{
 			this.move(deltaMove[0],deltaMove[1]);
+		}
+		else
+		{
+			for(int[] move : getDirectionsNear(deltaMove))
+			{
+				if(perception.isInMap(new Point(this.getX() + move[0], this.getY() + move[1])))
+				{
+					this.move(move[0], move[1]);
+				}
+			}
+		}
 		
 		
 		
@@ -93,6 +105,11 @@ public class Zombie extends Agent{
 		if(miracleHealing) return new Human(this.getX(), this.getY(), this.perception);
 		//System.out.println("Zombie Killed");
 		return null;
+	}
+
+	@Override
+	public int getMoveSpeed() {
+		return moveSpeed;
 	}
 
 }

@@ -15,7 +15,7 @@ public class LifeView extends JPanel{
 	
 	protected final boolean DEBUG = false; //True to draw more for better understanding
 	
-	protected final int DIAMETER = 3;
+	protected final int DIAMETER = 4;
 	
 	protected LifeCtrlServices services;
 	

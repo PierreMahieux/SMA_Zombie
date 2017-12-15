@@ -106,8 +106,8 @@ public class Perception {
 		return centroid;
 	}
 	
-	public boolean isInMap(Point agent)
+	public boolean isInMap(Point agentPos)
 	{
-		return this.map.isInMap(agent);
+		return this.map.isInMap(agentPos);
 	}
 }
