@@ -57,26 +57,32 @@ public class FieldMap {
 	}
 	
 	public void initPerlinMap(double seed)
-	{		
+	{
+		double[] smallLimit = {0.15*size[0], 0.15*size[1]};
+		double[] largeLimit = {0.15*size[0], 0.15*size[1]}; 
+		
 		for(int yi = 0; yi < size[1];yi++)
 		{
 			for(int xi = 0; xi < size[0];xi++)
 			{
 				double noise = 0;
 				
-				if(xi > 0.850*size[0] || xi < 0.15*size[0])
+				if(xi > largeLimit[0] || xi < smallLimit[0])
 				{
-					if(xi>0.850*size[0])noise-= (0.15*size[0] - (size[0]-xi));
-					else noise-=(0.15*size[0]-xi);
+					if(xi>largeLimit[0])noise-= (smallLimit[0] - (size[0]-xi));
+					else noise-=(smallLimit[0]-xi);
 				}
-				if( yi > 0.850*size[1] || yi<0.15*size[1])
+				if( yi > largeLimit[1] || yi<smallLimit[1])
 				{
-					if(yi>0.850*size[1])noise-= (0.15*size[1] - (size[1]-yi));
-					else noise-=(0.15*size[1]-yi);
+					if(yi>largeLimit[1])noise-= (smallLimit[1] - (size[1]-yi));
+					else noise-=(smallLimit[1]-yi);
 				}
 				
 				double x = (double)xi;x/=200;
 				double y = (double)yi;y/=200;
+				
+				//Basically : 
+				//(int)(amplitude*ImprovedNoise.noise(x*frequency+offset,y*frequency+offset,z)); z used as a seed as we are here in 2Ds.
 				
 				noise += (int)(300*ImprovedNoise.noise(x/3,y/3,seed));
 				noise += (int)(100*ImprovedNoise.noise(x+10,y+10,seed));
@@ -87,8 +93,7 @@ public class FieldMap {
 				if(noise>0)
 					map[yi][xi] = 1;
 				else
-					map[yi][xi] = 0;
-				
+					map[yi][xi] = 0;				
 			}
 		}
 	}
