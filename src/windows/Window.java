@@ -1,18 +1,24 @@
 package windows;
 
 import java.awt.BorderLayout;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 
 import life.LifeCtrl;
 
 @SuppressWarnings("serial")
-public class Window extends JFrame {
+public class Window extends JFrame implements ItemListener{
 
 	protected LifeCtrl ctrl;
+	protected boolean playing = true;
 	
 	public Window()
 	{
@@ -47,6 +53,8 @@ public class Window extends JFrame {
 		    }
 		});
 		
+		createMenuBar();
+				
 		setVisible(true);
 		this.setLocationRelativeTo(null);		
 		
@@ -54,17 +62,38 @@ public class Window extends JFrame {
 		go();
 	}
 	
+	private void createMenuBar() {
+		JMenuBar menuBar = new JMenuBar();
+		JMenu menu = new JMenu("File");
+		menu.getAccessibleContext().setAccessibleDescription(
+		        "Menu");
+		menuBar.add(menu);
+		
+		JCheckBoxMenuItem cbMenuItem = new JCheckBoxMenuItem("Play simulation");
+		cbMenuItem.setSelected(playing);
+		cbMenuItem.addItemListener(this);
+		menu.add(cbMenuItem);
+
+		
+		this.setJMenuBar(menuBar);
+	}
+
 	private void go()
 	{
 		while(true)
 		{
-			ctrl.oneStep();
-			
+			if (playing) {
+				ctrl.oneStep();
+			}
 			try{
 				Thread.sleep(10);
 			}catch(InterruptedException e){
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	public void itemStateChanged(ItemEvent e) {
+		this.playing = !playing;
 	}
 }
