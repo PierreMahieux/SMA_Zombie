@@ -5,6 +5,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Scanner;
 
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
@@ -22,7 +23,12 @@ public class Window extends JFrame implements ItemListener{
 	
 	public Window()
 	{
-		ctrl = new LifeCtrl();	
+		System.out.println("Entrez le pourcentage d'Humain ]0;1]");
+		Scanner sc = new Scanner(System.in);
+		float ratio = Float.parseFloat(sc.nextLine());
+		sc.close();
+		
+		ctrl = new LifeCtrl(ratio);	
 		setVisible(true);		
 		setTitle("Zombies");
 		

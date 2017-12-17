@@ -23,7 +23,9 @@ public class LifeCtrl {
 	protected LifeView view;
 	protected LifeModel model;
 	
-	public LifeCtrl()
+	protected static int NUMBER_OF_AGENTS = 300;
+	
+	public LifeCtrl(float ratio)
 	{
 		services = new LifeCtrlServices() {		
 			@Override
@@ -80,14 +82,16 @@ public class LifeCtrl {
 			}
 		});
 		
-		for(int i = 0; i < 300; i++)
+		for(int i = 0; i < NUMBER_OF_AGENTS; i++)
 		{
 			Point spawn = model.map.getRandomPointInMap();
 			
-			if(Math.random() > 0.95)
-				model.agents.add(new Zombie(spawn.x, spawn.y, new Perception(services, model.map)));
-			else
+			if (i < NUMBER_OF_AGENTS*ratio) {
 				model.agents.add(new Human(spawn.x, spawn.y, new Perception(services, model.map)));
+			}
+			else {
+				model.agents.add(new Zombie(spawn.x, spawn.y, new Perception(services, model.map)));
+			}
 		}
 	}
 	
