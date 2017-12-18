@@ -23,9 +23,9 @@ public class LifeCtrl {
 	protected LifeView view;
 	protected LifeModel model;
 	
-	protected static int NUMBER_OF_AGENTS = 300;
+	protected int numberOfAgents;
 	
-	public LifeCtrl(float ratio)
+	public LifeCtrl(float ratio, float density)
 	{
 		services = new LifeCtrlServices() {		
 			@Override
@@ -82,11 +82,13 @@ public class LifeCtrl {
 			}
 		});
 		
-		for(int i = 0; i < NUMBER_OF_AGENTS; i++)
+		numberOfAgents = (int)(density * model.map.getSurface());
+		
+		for(int i = 0; i < numberOfAgents; i++)
 		{
 			Point spawn = model.map.getRandomPointInMap();
 			
-			if (i < NUMBER_OF_AGENTS*ratio) {
+			if (i < numberOfAgents*ratio) {
 				model.agents.add(new Human(spawn.x, spawn.y, new Perception(services, model.map)));
 			}
 			else {

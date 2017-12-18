@@ -10,10 +10,15 @@ public class FieldMap {
 	
 	protected int[][] map;
 	protected int[] size = new int[2];
+	protected int surface = 0;
 	
 	public int[][] getTerrain()
 	{
 		return map;
+	}
+	
+	public int getSurface() {
+		return surface;
 	}
 	
 	public FieldMap(int xSize, int ySize)
@@ -39,6 +44,7 @@ public class FieldMap {
 			for(int xi = 0; xi < map[yi].length; xi++)
 			{
 				map[yi][xi] = MyMaths.distance(new Point(xi,yi), center) <= radius ? 1 : 0;
+				surface += map[yi][xi];
 			}
 		}
 	}
@@ -93,7 +99,9 @@ public class FieldMap {
 				if(noise>0)
 					map[yi][xi] = 1;
 				else
-					map[yi][xi] = 0;				
+					map[yi][xi] = 0;
+				
+				surface += map[yi][xi];
 			}
 		}
 	}
