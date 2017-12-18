@@ -41,12 +41,12 @@ public abstract class Agent {
 	 * @param computedDirection : Normalized vector
 	 * @return A new vector scaled.
 	 */
-	protected int[] getUsableDirection(double[] computedDirection)
+	public int[] getUsableDirection(double[] computedDirection)
 	{
 		int[] newDirection = new int[2];
 		
 		newDirection[0] = (int)(computedDirection[0] * getMoveSpeed());
-		newDirection[1] = (int)(getMoveSpeed() - Math.abs(newDirection[0]) * Math.signum(computedDirection[1]));	
+		newDirection[1] = (int)((getMoveSpeed() - Math.abs(newDirection[0])) * Math.signum(computedDirection[1]));	
 		
 		return newDirection;
 	}
