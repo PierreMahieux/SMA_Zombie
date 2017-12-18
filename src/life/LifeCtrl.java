@@ -51,8 +51,8 @@ public class LifeCtrl {
 		model = new LifeModel();
 		
 		model.map = new FieldMap(MAX_X*2, MAX_Y*2);
-		//model.map.initCircleMap();
-		model.map.initPerlinMap(0);
+		model.map.initCircleMap();
+//		model.map.initPerlinMap(0);
 
 		mapview = new FieldMapView(services);
 		

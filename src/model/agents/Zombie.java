@@ -9,6 +9,7 @@ import utils.MyMaths;
 public class Zombie extends Agent{
 	
 	protected boolean miracleHealing = false;
+	protected int miracleHealingProbability = 100000;
 	protected int moveSpeed = 2;
 	
 	public static final int killDistance = 10;
@@ -28,7 +29,7 @@ public class Zombie extends Agent{
 	{
 		Human nearestHuman = this.perception.getNearestHumanFrom(this.getX(), this.getY());
 		
-		if(Math.random() * 10000 < 1)
+		if(Math.random() * miracleHealingProbability < 1)
 		{
 			miracleHealing = true;
 			alive = false;
