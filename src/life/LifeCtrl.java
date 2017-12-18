@@ -9,6 +9,7 @@ import java.util.Collections;
 
 import javax.swing.JPanel;
 
+import life.metrics.MetricsCtrl;
 import model.Agent;
 import model.FieldMap;
 import model.Perception;
@@ -22,6 +23,8 @@ public class LifeCtrl {
 	protected FieldMapView mapview;
 	protected LifeView view;
 	protected LifeModel model;
+	
+	protected MetricsCtrl metrics;
 	
 	protected int numberOfAgents;
 	
@@ -53,6 +56,8 @@ public class LifeCtrl {
 		model.map = new FieldMap(MAX_X*2, MAX_Y*2);
 		model.map.initCircleMap();
 //		model.map.initPerlinMap(0);
+		
+		metrics = new MetricsCtrl(services);
 
 		mapview = new FieldMapView(services);
 		
@@ -105,6 +110,11 @@ public class LifeCtrl {
 	public JPanel getMapView()
 	{
 		return this.mapview;
+	}
+	
+	public JPanel getMetricsView()
+	{
+		return this.metrics.getView();
 	}
 
 	public void oneStep()
