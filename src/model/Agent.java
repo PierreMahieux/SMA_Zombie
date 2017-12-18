@@ -39,7 +39,6 @@ public abstract class Agent {
 	/**
 	 * 
 	 * @param computedDirection : Normalized vector
-	 * @param moveSpeed : Quantity of movement allowed
 	 * @return A new vector scaled.
 	 */
 	protected int[] getUsableDirection(double[] computedDirection)
@@ -47,7 +46,7 @@ public abstract class Agent {
 		int[] newDirection = new int[2];
 		
 		newDirection[0] = (int)(computedDirection[0] * getMoveSpeed());
-		newDirection[1] = (int)(getMoveSpeed() - Math.abs(newDirection[0]));	
+		newDirection[1] = (int)(getMoveSpeed() - Math.abs(newDirection[0]) * Math.signum(computedDirection[1]));	
 		
 		return newDirection;
 	}
@@ -106,19 +105,11 @@ public abstract class Agent {
 		
 		/** Dumping the unwanted values **/
 		sortedDirections.remove(0);
-		while(sortedDirections.size() > maxMovementPossible/2)
+		while(sortedDirections.size() > maxMovementPossible*2/3)
 		{
 			sortedDirections.remove(sortedDirections.size()-1);
 		}
 		
-		System.out.print("Near " + direction[0] + "," + direction[1] + " : ");
-		
-		for(int[] p : sortedDirections)
-		{
-			System.out.print(p[0] + "," + p[1] + " ");
-		}
-		
-		System.out.println("\n" + sortedDirections.size());
 		
 		return sortedDirections;
 	}

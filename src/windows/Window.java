@@ -26,9 +26,11 @@ public class Window extends JFrame implements ItemListener{
 		System.out.println("Entrez le pourcentage d'Humain ]0;1]");
 		Scanner sc = new Scanner(System.in);
 		float ratio = Float.parseFloat(sc.nextLine());
+		System.out.println("Densité d'agent (agent/pixel) sur la carte : ");
+		float density = Float.parseFloat(sc.nextLine());
 		sc.close();
 		
-		ctrl = new LifeCtrl(ratio);	
+		ctrl = new LifeCtrl(ratio, density);	
 		setVisible(true);		
 		setTitle("Zombies");
 		
@@ -90,6 +92,9 @@ public class Window extends JFrame implements ItemListener{
 		{
 			if (playing) {
 				ctrl.oneStep();
+			}
+			else {
+				this.repaint();
 			}
 			try{
 				Thread.sleep(10);

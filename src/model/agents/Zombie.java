@@ -41,7 +41,6 @@ public class Zombie extends Agent{
 		if(nearestHuman == null)
 		{
 			//No human in sight
-			//this.move((int)((Math.random()-0.5) * 4),(int)((Math.random()-0.5) * 4));
 			deltaMove[0] = (int)((Math.random()-0.5) * 4);
 			deltaMove[1] = (int)((Math.random()-0.5) * 4);
 		}
@@ -55,13 +54,6 @@ public class Zombie extends Agent{
 			else
 			{
 				double[] direction = MyMaths.normaliseVector(nearestHuman.getX() - this.getX(), nearestHuman.getY() - this.getY());
-				
-
-				//if(perception.isInMap(new Point(this.getX() + (int)(direction[0]*moveSpeed), this.getY() + (int)(direction[1]*moveSpeed))))
-				//	this.move((int)(direction[0]*moveSpeed), (int)(direction[1]*moveSpeed));
-				
-				//deltaMove[0] = (int)(direction[0]*moveSpeed);
-				//deltaMove[1] = (int)(direction[1]*moveSpeed);
 				
 				deltaMove = getUsableDirection(direction);
 			}
@@ -78,6 +70,7 @@ public class Zombie extends Agent{
 				if(perception.isInMap(new Point(this.getX() + move[0], this.getY() + move[1])))
 				{
 					this.move(move[0], move[1]);
+					return;
 				}
 			}
 		}
@@ -104,7 +97,6 @@ public class Zombie extends Agent{
 	public Agent getNextState()
 	{
 		if(miracleHealing) return new Human(this.getX(), this.getY(), this.perception);
-		//System.out.println("Zombie Killed");
 		return null;
 	}
 
