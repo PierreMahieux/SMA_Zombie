@@ -87,8 +87,8 @@ public class FieldMap {
 				noise += (int)(300*ImprovedNoise.noise(x/3,y/3,seed));
 				noise += (int)(100*ImprovedNoise.noise(x+10,y+10,seed));
 				noise += (int)(50*ImprovedNoise.noise(x*2,y*2,seed));
-				noise += (int)(5*ImprovedNoise.noise(x*10,y*10,seed));
-				noise += (int)(5*ImprovedNoise.noise(x*100,y*100,seed));
+//				noise += (int)(5*ImprovedNoise.noise(x*10,y*10,seed));
+//				noise += (int)(5*ImprovedNoise.noise(x*100,y*100,seed));
 				
 				if(noise>0)
 					map[yi][xi] = 1;

@@ -21,8 +21,6 @@ public class Human extends Agent{
 
 	@Override
 	public void live() {
-//		this.move((int)((Math.random()-0.5)*moveSpeed), (int)((Math.random()-0.5)*moveSpeed));
-//		this.perception.getNearestZombieFrom(this.getX(), this.getY());
 		
 		int areaRadius = 100;
 		ArrayList<Agent> nearbyZombies = this.perception.getNearbyZombies(this.getX(), this.getY(), areaRadius);
@@ -30,7 +28,6 @@ public class Human extends Agent{
 		int[] deltaMove = new int[2];
 		
 		if (nearbyZombies.isEmpty()) {
-			//this.move((int)((Math.random()-0.5) * 4),(int)((Math.random()-0.5) * 4));
 			deltaMove[0] = (int)((Math.random()-0.5) * 4);
 			deltaMove[1] = (int)((Math.random()-0.5) * 4);			
 		}
@@ -41,12 +38,6 @@ public class Human extends Agent{
 			
 			double[] direction = MyMaths.normaliseVector(this.getX() - (int)zombiesCentroid.getX(), this.getY() - (int)zombiesCentroid.getY());
 			
-			//if(perception.isInMap(new Point(this.getX() + (int)(direction[0]*moveSpeed), this.getY() + (int)(direction[1]*moveSpeed))))
-			//this.move((int)(direction[0]*moveSpeed), (int)(direction[1]*moveSpeed));
-			//deltaMove[0] = (int)(direction[0]*moveSpeed);
-			//deltaMove[1] = (int)(direction[1]*moveSpeed);
-			
-
 			deltaMove = getUsableDirection(direction);
 		}
 		
@@ -61,6 +52,7 @@ public class Human extends Agent{
 				if(perception.isInMap(new Point(this.getX() + move[0], this.getY() + move[1])))
 				{
 					this.move(move[0], move[1]);
+					return;
 				}
 			}
 		}
@@ -75,7 +67,6 @@ public class Human extends Agent{
 	@Override
 	public Agent getNextState()
 	{
-		//System.out.println("Human Killed");
 		return new Zombie(this.getX(), this.getY(), this.perception);
 	}
 
