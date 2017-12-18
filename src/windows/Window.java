@@ -5,6 +5,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Scanner;
 
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
@@ -22,19 +23,14 @@ public class Window extends JFrame implements ItemListener{
 	
 	public Window()
 	{
-		/*
+		
 		System.out.println("Entrez le pourcentage d'Humain ]0;1]");
 		Scanner sc = new Scanner(System.in);
 		float ratio = Float.parseFloat(sc.nextLine());
 		System.out.println("Densité d'agent (agent/pixel) sur la carte : ");
 		float density = Float.parseFloat(sc.nextLine());
 		sc.close();
-		
-		*/
-		
-		float ratio = 0.9f;
-		float density = 0.001f;
-		
+				
 		ctrl = new LifeCtrl(ratio, density);	
 		setVisible(true);		
 		setTitle("Zombies");
