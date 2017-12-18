@@ -49,6 +49,59 @@ public class FieldMap {
 		}
 	}
 	
+	public void initStreetLikeMap()
+	{
+		surface = 0;
+		
+		for(int yi = 0; yi < map.length; yi++)
+		{
+			for(int xi = 0; xi < map[yi].length; xi++)
+			{
+				map[yi][xi] = 0;
+			}
+		}
+		
+		int verticales = 9;
+		int horizontales = 2;
+		
+		int width = 100;
+		
+		int offset = size[0] / (verticales + 1);
+		
+		for(int v = 0; v < verticales; v++)
+		{
+			int startX = offset * (v+1) - width/2;
+			int stopX = startX + width;
+			
+			for(int xi = startX; xi < stopX; xi++)
+			{
+				for(int yi = 0; yi < size[1]; yi++)
+				{
+					map[yi][xi] = 1;
+					surface++;
+				}
+			}
+		}
+		
+		offset = size[1] / (horizontales + 1);
+		
+		for(int v = 0; v < horizontales; v++)
+		{
+			int startY = offset * (v+1) - width/2;
+			int stopY = startY + width;
+			
+			for(int yi = startY; yi < stopY; yi++)
+			{
+				for(int xi = 0; xi < size[0]; xi++)
+				{
+					map[yi][xi] = 1;
+					surface++;
+				}
+			}
+		}
+		
+	}
+	
 	public Point getRandomPointInMap()
 	{
 		Random generator = new Random();
