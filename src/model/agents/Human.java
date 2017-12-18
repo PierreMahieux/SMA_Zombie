@@ -13,10 +13,12 @@ public class Human extends Agent{
 	
 	public Human(int x, int y, Perception perception) {
 		super(x,y, perception);
+		this.strength = 1;
 	}
 
 	public Human(Perception perception) {
 		super(perception);
+		this.strength = 1;
 	}
 
 	@Override
@@ -62,6 +64,12 @@ public class Human extends Agent{
 	public void kill()
 	{
 		alive = false;
+	}
+	
+	public void reinforce()
+	{
+		this.strength *= 1.3;
+		if(this.strength > 9)this.strength = 9;
 	}
 	
 	@Override

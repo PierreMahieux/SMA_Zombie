@@ -11,6 +11,8 @@ public abstract class Agent {
 	private int x = 0;
 	private int y = 0;
 	
+	protected double strength;
+	
 	protected boolean alive = true;
 	
 	public boolean isAlive() {
@@ -113,7 +115,11 @@ public abstract class Agent {
 		
 		return sortedDirections;
 	}
-	
+
+	public double getStrength()
+	{
+		return this.strength;
+	}
 	public abstract int getMoveSpeed();
 	public abstract void live();
 	public abstract Agent getNextState();

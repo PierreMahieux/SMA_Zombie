@@ -17,11 +17,13 @@ public class Zombie extends Agent{
 	public Zombie(int x, int y, Perception perception) 
 	{
 		super(x,y,perception);
+		this.strength = 3;
 	}
 
 	public Zombie(Perception perception)
 	{
 		super(perception);
+		this.strength = 3;
 	}
 
 	@Override
@@ -81,15 +83,18 @@ public class Zombie extends Agent{
 	
 	protected void attack(Human h)
 	{
-		if(Math.random() > 0.75)
-		{
-			//Human wins
-			alive = false;
-		}
-		else
+		double humanStrenght = h.getStrength();
+		
+		if(Math.random() * (humanStrenght + getStrength()) > humanStrenght)
 		{
 			//Zombie wins
 			h.kill();
+		}
+		else
+		{
+			//Human wins
+			h.reinforce();
+			alive = false;
 		}
 	}
 	
