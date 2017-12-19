@@ -27,7 +27,7 @@ public class Window extends JFrame implements ItemListener{
 		System.out.println("Entrez le pourcentage d'Humain ]0;1]");
 		Scanner sc = new Scanner(System.in);
 		float ratio = Float.parseFloat(sc.nextLine());
-		System.out.println("DensitÃ© d'agent (agent/pixel) sur la carte : ");
+		System.out.println("Densité d'agent (agent/pixel) sur la carte : ");
 		float density = Float.parseFloat(sc.nextLine());
 		sc.close();
 				
